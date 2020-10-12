@@ -1,0 +1,20 @@
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.csprojAssemblyReference.cache
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA_Uninstaller.ATA_Uninstaller.resources
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA_Uninstaller.Properties.Resources.resources
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.csproj.GenerateResource.cache
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.csproj.CoreCompileInputs.cache
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\bin\Debug\ATA Uninstaller.exe.config
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\bin\Debug\ATA Uninstaller.exe
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\bin\Debug\ATA Uninstaller.pdb
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.exe
+C:\Users\Max\source\repos\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.pdb
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\bin\Debug\ATA Uninstaller.exe.config
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\bin\Debug\ATA Uninstaller.exe
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\bin\Debug\ATA Uninstaller.pdb
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.csprojAssemblyReference.cache
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA_Uninstaller.ATA_Uninstaller.resources
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA_Uninstaller.Properties.Resources.resources
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.csproj.GenerateResource.cache
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.csproj.CoreCompileInputs.cache
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.exe
+C:\Users\Max\Documents\GitHub\ATA Uninstaller\ATA Uninstaller\obj\Debug\ATA Uninstaller.pdb
