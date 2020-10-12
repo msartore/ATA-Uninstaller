@@ -6,4 +6,4 @@
 
   Bloatware list  |  Tested  |  Download  
 --- | --- | ---
-  xiaomi          |  No      |  Download(https://raw.githubusercontent.com/MassimilianoSartore/ATA-Uninstaller/main/Bloatware%20app%20list/xiaomi.ata)  
+  xiaomi          |  No      |  [Download](https://raw.githubusercontent.com/MassimilianoSartore/ATA-Uninstaller/main/Bloatware%20app%20list/xiaomi.ata)  
