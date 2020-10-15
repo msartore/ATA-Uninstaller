@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ATA Uninstaller")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("ATA Uninstaller is an Advance Tool for Android™ powered by SDK Platform Tools. This program is able to remove system/non system app on your android ")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ATA Uninstaller")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.1.1012")]
-[assembly: AssemblyFileVersion("0.0.1.1012")]
+[assembly: AssemblyVersion("0.0.3.1016")]
+[assembly: AssemblyFileVersion("0.0.3.1016")]

@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATA_Uninstaller));
             this.buttonLogClear = new System.Windows.Forms.Button();
-            this.buttonCredits = new System.Windows.Forms.Button();
-            this.buttonFileExplorer = new System.Windows.Forms.Button();
             this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.checkedListBoxApp = new System.Windows.Forms.CheckedListBox();
@@ -42,42 +40,27 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButtoNonSystemApp = new System.Windows.Forms.RadioButton();
             this.radioButtonSystemApp = new System.Windows.Forms.RadioButton();
+            this.buttonKillAdb = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonLogClear
             // 
-            this.buttonLogClear.Location = new System.Drawing.Point(49, 456);
+            this.buttonLogClear.BackColor = System.Drawing.Color.White;
+            this.buttonLogClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogClear.ForeColor = System.Drawing.Color.Black;
+            this.buttonLogClear.Location = new System.Drawing.Point(37, 427);
             this.buttonLogClear.Name = "buttonLogClear";
-            this.buttonLogClear.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogClear.Size = new System.Drawing.Size(87, 23);
             this.buttonLogClear.TabIndex = 27;
             this.buttonLogClear.Text = "Clear log";
-            this.buttonLogClear.UseVisualStyleBackColor = true;
+            this.buttonLogClear.UseVisualStyleBackColor = false;
             this.buttonLogClear.Click += new System.EventHandler(this.buttonLogClear_Click);
-            // 
-            // buttonCredits
-            // 
-            this.buttonCredits.Location = new System.Drawing.Point(504, 10);
-            this.buttonCredits.Name = "buttonCredits";
-            this.buttonCredits.Size = new System.Drawing.Size(23, 20);
-            this.buttonCredits.TabIndex = 26;
-            this.buttonCredits.Text = "?";
-            this.buttonCredits.UseVisualStyleBackColor = true;
-            this.buttonCredits.Click += new System.EventHandler(this.buttonCredits_Click);
-            // 
-            // buttonFileExplorer
-            // 
-            this.buttonFileExplorer.Location = new System.Drawing.Point(11, 430);
-            this.buttonFileExplorer.Name = "buttonFileExplorer";
-            this.buttonFileExplorer.Size = new System.Drawing.Size(113, 23);
-            this.buttonFileExplorer.TabIndex = 25;
-            this.buttonFileExplorer.Text = "Load bloatware file";
-            this.buttonFileExplorer.UseVisualStyleBackColor = true;
-            this.buttonFileExplorer.Click += new System.EventHandler(this.buttonFileExplorer_Click);
             // 
             // checkBoxSelectAll
             // 
             this.checkBoxSelectAll.AutoSize = true;
+            this.checkBoxSelectAll.ForeColor = System.Drawing.Color.Black;
             this.checkBoxSelectAll.Location = new System.Drawing.Point(11, 11);
             this.checkBoxSelectAll.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSelectAll.Name = "checkBoxSelectAll";
@@ -89,7 +72,9 @@
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(254, 10);
+            this.textBoxSearch.BackColor = System.Drawing.Color.White;
+            this.textBoxSearch.ForeColor = System.Drawing.Color.Black;
+            this.textBoxSearch.Location = new System.Drawing.Point(284, 9);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -100,6 +85,8 @@
             // 
             // checkedListBoxApp
             // 
+            this.checkedListBoxApp.BackColor = System.Drawing.Color.White;
+            this.checkedListBoxApp.ForeColor = System.Drawing.Color.Black;
             this.checkedListBoxApp.FormattingEnabled = true;
             this.checkedListBoxApp.Location = new System.Drawing.Point(11, 32);
             this.checkedListBoxApp.Margin = new System.Windows.Forms.Padding(2);
@@ -110,28 +97,36 @@
             // 
             // buttonUninstall
             // 
+            this.buttonUninstall.BackColor = System.Drawing.Color.White;
+            this.buttonUninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUninstall.ForeColor = System.Drawing.Color.Black;
             this.buttonUninstall.Location = new System.Drawing.Point(409, 372);
             this.buttonUninstall.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUninstall.Name = "buttonUninstall";
             this.buttonUninstall.Size = new System.Drawing.Size(118, 23);
             this.buttonUninstall.TabIndex = 19;
             this.buttonUninstall.Text = "Uninstall";
-            this.buttonUninstall.UseVisualStyleBackColor = true;
+            this.buttonUninstall.UseVisualStyleBackColor = false;
             this.buttonUninstall.Click += new System.EventHandler(this.buttonUninstall_Click);
             // 
             // buttonSyncApp
             // 
+            this.buttonSyncApp.BackColor = System.Drawing.Color.White;
+            this.buttonSyncApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSyncApp.ForeColor = System.Drawing.Color.Black;
             this.buttonSyncApp.Location = new System.Drawing.Point(131, 372);
             this.buttonSyncApp.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSyncApp.Name = "buttonSyncApp";
             this.buttonSyncApp.Size = new System.Drawing.Size(118, 23);
             this.buttonSyncApp.TabIndex = 21;
             this.buttonSyncApp.Text = "Sync App";
-            this.buttonSyncApp.UseVisualStyleBackColor = true;
+            this.buttonSyncApp.UseVisualStyleBackColor = false;
             this.buttonSyncApp.Click += new System.EventHandler(this.buttonSyncApp_Click);
             // 
             // listBoxLog
             // 
+            this.listBoxLog.BackColor = System.Drawing.Color.Black;
+            this.listBoxLog.ForeColor = System.Drawing.Color.White;
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(129, 410);
             this.listBoxLog.Margin = new System.Windows.Forms.Padding(2);
@@ -153,8 +148,10 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.radioButtoNonSystemApp);
             this.panel1.Controls.Add(this.radioButtonSystemApp);
+            this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(11, 373);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
@@ -164,6 +161,7 @@
             // radioButtoNonSystemApp
             // 
             this.radioButtoNonSystemApp.AutoSize = true;
+            this.radioButtoNonSystemApp.ForeColor = System.Drawing.Color.Black;
             this.radioButtoNonSystemApp.Location = new System.Drawing.Point(3, 26);
             this.radioButtoNonSystemApp.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtoNonSystemApp.Name = "radioButtoNonSystemApp";
@@ -177,7 +175,8 @@
             // radioButtonSystemApp
             // 
             this.radioButtonSystemApp.AutoSize = true;
-            this.radioButtonSystemApp.Location = new System.Drawing.Point(26, 4);
+            this.radioButtonSystemApp.ForeColor = System.Drawing.Color.Black;
+            this.radioButtonSystemApp.Location = new System.Drawing.Point(3, 5);
             this.radioButtonSystemApp.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonSystemApp.Name = "radioButtonSystemApp";
             this.radioButtonSystemApp.Size = new System.Drawing.Size(81, 17);
@@ -187,15 +186,26 @@
             this.radioButtonSystemApp.UseVisualStyleBackColor = true;
             this.radioButtonSystemApp.CheckedChanged += new System.EventHandler(this.radioButtonSystemApp_CheckedChanged);
             // 
+            // buttonKillAdb
+            // 
+            this.buttonKillAdb.BackColor = System.Drawing.Color.White;
+            this.buttonKillAdb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKillAdb.Location = new System.Drawing.Point(37, 456);
+            this.buttonKillAdb.Name = "buttonKillAdb";
+            this.buttonKillAdb.Size = new System.Drawing.Size(87, 23);
+            this.buttonKillAdb.TabIndex = 28;
+            this.buttonKillAdb.Text = "Kill Adb";
+            this.buttonKillAdb.UseVisualStyleBackColor = false;
+            this.buttonKillAdb.Click += new System.EventHandler(this.buttonKillAdb_Click);
+            // 
             // ATA_Uninstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(537, 490);
+            this.Controls.Add(this.buttonKillAdb);
             this.Controls.Add(this.buttonLogClear);
-            this.Controls.Add(this.buttonCredits);
-            this.Controls.Add(this.buttonFileExplorer);
             this.Controls.Add(this.checkBoxSelectAll);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.checkedListBoxApp);
@@ -209,6 +219,7 @@
             this.MaximizeBox = false;
             this.Name = "ATA_Uninstaller";
             this.Text = "ATA Uninstaller";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ATA_Uninstaller_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -219,8 +230,6 @@
         #endregion
 
         private System.Windows.Forms.Button buttonLogClear;
-        private System.Windows.Forms.Button buttonCredits;
-        private System.Windows.Forms.Button buttonFileExplorer;
         private System.Windows.Forms.CheckBox checkBoxSelectAll;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.CheckedListBox checkedListBoxApp;
@@ -231,6 +240,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton radioButtoNonSystemApp;
         private System.Windows.Forms.RadioButton radioButtonSystemApp;
+        private System.Windows.Forms.Button buttonKillAdb;
     }
 }
 
