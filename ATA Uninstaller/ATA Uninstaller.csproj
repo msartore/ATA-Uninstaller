@@ -52,33 +52,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adbMissingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adbMissingForm.Designer.cs">
+      <DependentUpon>adbMissingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ATA_Uninstaller.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ATA_Uninstaller.Designer.cs">
       <DependentUpon>ATA_Uninstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adbMissingForm.resx">
+      <DependentUpon>adbMissingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ATA_Uninstaller.resx">
       <DependentUpon>ATA_Uninstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +115,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atauninstaller_icon.ico" />
+    <None Include="Resources\Error.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

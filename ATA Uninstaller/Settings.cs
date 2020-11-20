@@ -86,10 +86,5 @@ namespace ATA_Uninstaller
         {
             this.Close();
         }
-
-        private void systemCall(string command)
-        {
-            systemcall.systemCommand(command);
-        }
     }
 }

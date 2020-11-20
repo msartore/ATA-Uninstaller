@@ -41,6 +41,7 @@
             this.radioButtoNonSystemApp = new System.Windows.Forms.RadioButton();
             this.radioButtonSystemApp = new System.Windows.Forms.RadioButton();
             this.buttonKillAdb = new System.Windows.Forms.Button();
+            this.backgroundWorkerSyncApp = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +82,7 @@
             this.textBoxSearch.Size = new System.Drawing.Size(242, 20);
             this.textBoxSearch.TabIndex = 24;
             this.textBoxSearch.Text = "Search";
+            this.textBoxSearch.Click += new System.EventHandler(this.textBoxSearch_TextChanged);
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // checkedListBoxApp
@@ -198,6 +200,10 @@
             this.buttonKillAdb.UseVisualStyleBackColor = false;
             this.buttonKillAdb.Click += new System.EventHandler(this.buttonKillAdb_Click);
             // 
+            // backgroundWorkerSyncApp
+            // 
+            this.backgroundWorkerSyncApp.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSyncApp_DoWork);
+            // 
             // ATA_Uninstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,6 +247,7 @@
         private System.Windows.Forms.RadioButton radioButtoNonSystemApp;
         private System.Windows.Forms.RadioButton radioButtonSystemApp;
         private System.Windows.Forms.Button buttonKillAdb;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSyncApp;
     }
 }
 

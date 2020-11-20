@@ -46,7 +46,7 @@ namespace ATA_Uninstaller
         }
         private void About_clicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Dev:\nMassimiliano Sartore\nCopyright 2020 Massimiliano Sartore", "Credits", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageShowBox("Dev:\nMassimiliano Sartore\nCopyright 2020 Massimiliano Sartore", 2);
         }
         private void Exit_clicked(object sender, EventArgs e)
         {
@@ -175,12 +175,12 @@ namespace ATA_Uninstaller
                     }
                     else
                     {
-                        MessageBox.Show("file not supported", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageShowBox("file not supported", 0);
                     }
                 }
                 if (noAppFound)
                 {
-                    MessageBox.Show("no app found, try another config", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageShowBox("no app found, try another config", 0);
                     LogWriteLine("Matching app not found!");
                 }
                 else
@@ -190,11 +190,11 @@ namespace ATA_Uninstaller
             }
             else
             {
-                MessageBox.Show("sync your app by pressing \"sync app\" button", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageShowBox("sync your app by pressing \"sync app\" button", 1);
             }
         }
 
-        public void systemCommand(string command)
+        static public void systemCommand(string command)
         {
             Process cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
@@ -232,17 +232,21 @@ namespace ATA_Uninstaller
                 {
                     command = "adb shell pm uninstall -k --user 0 ";
                 }
+                List<string> arrayApk= new List<string>();
                 foreach (Object list in checkedListBoxApp.CheckedItems)
                 {
-                    LogWriteLine("Uninstalling " + list);
-                    systemCommand(command + list);
-                    LogWriteLine(list + " uninstalled!");
+                    arrayApk.Add(list.ToString());
                 }
-                checkDeviceStatus();
+                LoadingForm load = new LoadingForm(arrayApk, command);
+                load.ShowDialog();
+                if (load.DialogResult == DialogResult.OK)
+                    backgroundWorkerSyncApp.RunWorkerAsync();
+                else
+                    MessageShowBox("Error during uninstallation process", 0);
             }
             else
             {
-                MessageBox.Show("No app selected", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageShowBox("No app selected", 1);
             }
         }
 
@@ -272,19 +276,20 @@ namespace ATA_Uninstaller
             buttonSyncApp.Enabled = true;
             if (!radioButtonSystemApp.Checked)
                 LogWriteLine("Non System App selected");
+
         }
 
         private void buttonSyncApp_Click(object sender, EventArgs e)
         {
             try
             {
-                checkDeviceStatus();
+                backgroundWorkerSyncApp.RunWorkerAsync();
             }
             catch (Exception ex)
             {
                 if (ex.ToString().Contains("Ionic"))
                 {
-                    MessageBox.Show("Ionic.Zip.dll not found!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageShowBox("Ionic.Zip.dll not found!", 0);
                 }
             }
         }
@@ -308,12 +313,34 @@ namespace ATA_Uninstaller
             }
         }
 
-        private void checkDeviceStatus()
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            checkedListBoxApp.Items.Clear();
+            foreach (string str in arrayApks)
+            {
+                if (str.Contains(textBoxSearch.Text))
+                    checkedListBoxApp.Items.Add(str);
+            }
+        }
+
+        private void buttonLogClear_Click(object sender, EventArgs e)
+        {
+            listBoxLog.Items.Clear();
+        }
+
+        private void buttonKillAdb_Click(object sender, EventArgs e)
+        {
+            systemCommand("taskkill /f /im adb.exe");
+            LogWriteLine("Adb killed");
+            MessageShowBox("Adb killed", 2);
+        }
+
+        private void backgroundWorkerSyncApp_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             arrayApks.Clear();
             checkedListBoxApp.Items.Clear();
-            if(File.Exists("adb.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
-            { 
+            if (File.Exists("adb.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
+            {
                 LogWriteLine("Checking device");
                 systemCommand("adb shell getprop ro.build.version.release > check.tmp");
                 string androidV;
@@ -359,63 +386,73 @@ namespace ATA_Uninstaller
                         else
                         {
                             File.Delete(filename);
-                            MessageBox.Show("Error!");
+                            MessageShowBox(filename+" not found!", 0);
                         }
                     }
                     else
                     {
                         File.Delete(filename);
                         LogWriteLine("DEVICE NOT FOUND/MULTIPLE DEVICES FOUND!");
+                        MessageShowBox("Error device not found/ multiple devices found", 0);
                     }
                 }
             }
             else
             {
-                if(MessageBox.Show("adb.exe not found\n\nDo you want to download sdk platform tool?\n\n[By pressing YES you agree sdk platform tool terms and conditions] for more info press help button", "Error!", MessageBoxButtons.YesNo,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,0, "https://pastebin.com/raw/Mvq1RCyJ", "Term & Conditions") == DialogResult.Yes)
+                adbMissingForm adbError = new adbMissingForm();
+                adbError.ShowDialog();
+                switch(adbError.DialogResult)
                 {
-                    LogWriteLine("Downloading sdk platform tool...");
-                    using (var client = new WebClient())
-                    {
-                        client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
-                        LogWriteLine("sdk platform tool downloaded");
-                        LogWriteLine("unzipping sdk platform tool");
-                        using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
+                    case DialogResult.Yes:
+                        LogWriteLine("Downloading sdk platform tool...");
+                        using (var client = new WebClient())
                         {
-                            zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
+                            client.DownloadFile("https://dl.google.com/android/repository/platform-tools-latest-windows.zip?authuser=2", "sdkplatformtool.zip");
+                            LogWriteLine("sdk platform tool downloaded");
+                            LogWriteLine("unzipping sdk platform tool");
+                            using (ZipFile zip = ZipFile.Read("sdkplatformtool.zip"))
+                            {
+                                zip.ExtractAll(System.IO.Path.GetDirectoryName(Application.ExecutablePath));
+                            }
+                            LogWriteLine("sdk platform tool downloaded Downloaded!");
+                            LogWriteLine("Getting things ready...");
+                            systemCommand("move platform-tools\\adb.exe \"%cd%\"");
+                            systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
+                            systemCommand("move platform-tools\\AdbWinApi.dll \"%cd%\"");
+                            File.Delete("sdkplatformtool.zip");
+                            systemCommand("rmdir /Q /S platform-tools");
+                            LogWriteLine("ATA Uninstaller ready!");
                         }
-                        LogWriteLine("sdk platform tool downloaded Downloaded!");
-                        LogWriteLine("Getting things ready...");
-                        systemCommand("move platform-tools\\adb.exe \"%cd%\"");
-                        systemCommand("move platform-tools\\AdbWinUsbApi.dll \"%cd%\"");
-                        systemCommand("move platform-tools\\AdbWinApi.dll \"%cd%\"");
-                        File.Delete("sdkplatformtool.zip");
-                        systemCommand("rmdir /Q /S platform-tools");
-                        LogWriteLine("ATA Uninstaller ready!");
-                    }
+                        break;
+                    case DialogResult.No:
+                        break;
+                    case DialogResult.OK:
+                        System.Diagnostics.Process.Start("https://developer.android.com/license?authuser=2");
+                        break;
+                    default:
+                        break;
                 }
-
             }
         }
 
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        /* Type 0 Error, Type 1 Warning, Type 2 Info */
+        private void MessageShowBox(string message, int type)
         {
-            checkedListBoxApp.Items.Clear();
-            foreach (string str in arrayApks)
+            switch(type)
             {
-                if (str.Contains(textBoxSearch.Text))
-                    checkedListBoxApp.Items.Add(str);
+                case 0:
+                    MessageBox.Show(message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1:
+                    MessageBox.Show(message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case 2:
+                    MessageBox.Show(message, "Info!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                default:
+                    MessageShowBox("Error in MessageShowBox", 0);
+                    break;
             }
-        }
-
-        private void buttonLogClear_Click(object sender, EventArgs e)
-        {
-            listBoxLog.Items.Clear();
-        }
-
-        private void buttonKillAdb_Click(object sender, EventArgs e)
-        {
-            systemCommand("taskkill /f /im adb.exe");
-            LogWriteLine("Adb killed");
         }
     }
 }
