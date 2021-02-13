@@ -296,8 +296,11 @@ namespace ATA_Uninstaller
 
         private void LogWriteLine(string str)
         {
-            listBoxLog.Items.Add(str);
-            listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+            listBoxLog.Invoke((Action)delegate
+             {
+                 listBoxLog.Items.Add(str);
+                 listBoxLog.TopIndex = listBoxLog.Items.Count - 1;
+             });
         }
 
         private void ATA_Uninstaller_FormClosing(object sender, FormClosingEventArgs e)
@@ -338,7 +341,10 @@ namespace ATA_Uninstaller
         private void backgroundWorkerSyncApp_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             arrayApks.Clear();
-            checkedListBoxApp.Items.Clear();
+            checkedListBoxApp.Invoke((Action)delegate
+            {
+                checkedListBoxApp.Items.Clear();
+            });
             if (File.Exists("adb.exe") && File.Exists("AdbWinUsbApi.dll") && File.Exists("AdbWinApi.dll"))
             {
                 LogWriteLine("Checking device");
@@ -379,8 +385,11 @@ namespace ATA_Uninstaller
                             File.Delete(filename);
                             foreach (string str in arrayApks)
                             {
-                                checkedListBoxApp.Items.Add(str);
-                                checkedListBoxApp.CheckOnClick = true;
+                                checkedListBoxApp.Invoke((Action)delegate
+                                {
+                                    checkedListBoxApp.Items.Add(str);
+                                    checkedListBoxApp.CheckOnClick = true;
+                                });
                             }
                         }
                         else

@@ -32,21 +32,33 @@ namespace ATA_Uninstaller
 
         private void backgroundWorkerUninstaller_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            progressBar1.Value = progressBar1.Maximum;
-            progressBar1.Refresh();
+            progressBar1.Invoke((Action)delegate
+            {
+                progressBar1.Value = progressBar1.Maximum;
+                progressBar1.Refresh();
+            });
             DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void backgroundWorkerUninstaller_DoWork(object sender, DoWorkEventArgs e)
         {
-            progressBar1.Maximum = arrayApk.Count-1;
+            progressBar1.Invoke((Action)delegate
+            {
+                progressBar1.Maximum = arrayApk.Count;
+            });
             foreach (string apk in arrayApk)
             {
-                labelApk.Text = apk;
+                labelApk.Invoke((Action)delegate
+                {
+                    labelApk.Text = apk;
+                });
                 ATA_Uninstaller.systemCommand(command + apk);
-                progressBar1.Value += 1;
-                progressBar1.Refresh();
+                progressBar1.Invoke((Action)delegate
+                {
+                    progressBar1.Value += 1;
+                    progressBar1.Refresh();
+                });
                 Thread.Sleep(500);
             }
         }
